@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Generate a PDF book from markdown chapter files.
-SQL & Database Design - PDF Generator
+System Design: A Complete Guide - PDF Generator
 """
 
 import os
@@ -54,13 +54,13 @@ BODY_FONT = 'ArialUnicode'
 BODY_FONT_BOLD = 'ArialUnicode-Bold'
 BODY_FONT_ITALIC = 'ArialUnicode-Italic'
 
-# ─── Colors (cyan/teal theme) ───
-DARK_BLUE = HexColor('#164e63')
-MEDIUM_BLUE = HexColor('#0891b2')
-LIGHT_BLUE = HexColor('#ecfeff')
+# ─── Colors ───
+DARK_BLUE = HexColor('#0f172a')
+MEDIUM_BLUE = HexColor('#1e40af')
+LIGHT_BLUE = HexColor('#ebf8ff')
 CODE_BG = HexColor('#f7fafc')
 CODE_BORDER = HexColor('#e2e8f0')
-ACCENT = HexColor('#06b6d4')
+ACCENT = HexColor('#3b82f6')
 DARK_GRAY = HexColor('#2d3748')
 MEDIUM_GRAY = HexColor('#4a5568')
 LIGHT_GRAY = HexColor('#edf2f7')
@@ -342,7 +342,7 @@ def format_inline(text):
 
     def replace_code(m):
         key = f'\x00CODE{counter[0]}\x00'
-        code_placeholders[key] = '<font name="' + CODE_FONT + '" size="9" color="#0891b2">' + m.group(1) + '</font>'
+        code_placeholders[key] = '<font name="' + CODE_FONT + '" size="9" color="#1e40af">' + m.group(1) + '</font>'
         counter[0] += 1
         return key
 
@@ -369,10 +369,6 @@ def format_inline(text):
     # Step 5: Italic (*text* or _text_) - careful not to match inside words
     text = re.sub(r'(?<!\w)\*([^\*]+?)\*(?!\w)', r'<i>\1</i>', text)
     text = re.sub(r'(?<!\w)_([^_]+?)_(?!\w)', r'<i>\1</i>', text)
-
-    # Step 5b: Fix incorrectly nested tags (e.g. <b><i>...</b></i> -> <b><i>...</i></b>)
-    text = re.sub(r'<b><i>(.*?)</b></i>', r'<b><i>\1</i></b>', text)
-    text = re.sub(r'<i><b>(.*?)</i></b>', r'<i><b>\1</b></i>', text)
 
     # Step 6: Restore protected spans
     for key, val in code_placeholders.items():
@@ -609,41 +605,41 @@ def create_table(rows, styles):
 
 
 # Chapter files in order
-CHAPTER_DIR = '/Users/e141057/Desktop/work/clade_play_area/books/sql-database/manuscript'
+CHAPTER_DIR = '/Users/e141057/Desktop/work/clade_play_area/books/system-design/manuscript'
 CHAPTER_FOLDERS = [
-    '01-what-are-databases',
-    '02-relational-model',
-    '03-installing-postgresql',
-    '04-creating-databases-tables',
-    '05-data-types',
-    '06-insert-data',
-    '07-select-queries',
-    '08-where-filtering',
-    '09-sorting-limiting',
-    '10-aggregate-functions',
-    '11-group-by-having',
-    '12-joins-intro',
-    '13-inner-join',
-    '14-left-right-join',
-    '15-full-cross-self-join',
-    '16-subqueries',
-    '17-set-operations',
-    '18-string-date-functions',
-    '19-case-expressions',
-    '20-views',
-    '21-indexes',
-    '22-normalization',
-    '23-er-diagrams',
-    '24-constraints-keys',
-    '25-transactions',
-    '26-window-functions',
-    '27-ctes-recursive',
-    '28-stored-procedures',
-    '29-triggers',
-    '30-performance-tuning',
-    '31-database-security',
-    '32-project-ecommerce-db',
-    '33-project-analytics',
+    '01-what-is-system-design',
+    '02-scaling-basics',
+    '03-load-balancing',
+    '04-caching',
+    '05-cdn',
+    '06-databases-sql-nosql',
+    '07-database-replication',
+    '08-database-sharding',
+    '09-message-queues',
+    '10-api-design',
+    '11-rate-limiting',
+    '12-consistent-hashing',
+    '13-cap-theorem',
+    '14-microservices',
+    '15-monolith-to-microservices',
+    '16-event-driven-architecture',
+    '17-blob-storage',
+    '18-search-systems',
+    '19-notification-system',
+    '20-logging-monitoring',
+    '21-design-url-shortener',
+    '22-design-paste-bin',
+    '23-design-twitter',
+    '24-design-instagram',
+    '25-design-chat-system',
+    '26-design-youtube',
+    '27-design-uber',
+    '28-design-notification-service',
+    '29-design-rate-limiter',
+    '30-design-web-crawler',
+    '31-estimation-math',
+    '32-interview-framework',
+    '33-common-patterns',
     '34-glossary',
 ]
 
@@ -665,7 +661,7 @@ def add_page_number(canvas, doc):
         canvas.line(inch, letter[1] - 0.6 * inch, letter[0] - inch, letter[1] - 0.6 * inch)
         canvas.setFont(BODY_FONT_ITALIC, 8)
         canvas.setFillColor(HexColor('#a0aec0'))
-        canvas.drawString(inch, letter[1] - 0.55 * inch, 'SQL & Database Design: A Complete Guide')
+        canvas.drawString(inch, letter[1] - 0.55 * inch, 'System Design: A Complete Guide')
         canvas.restoreState()
 
 
@@ -673,7 +669,7 @@ def build_cover_page(styles):
     """Create the cover page flowables."""
     flowables = []
     flowables.append(Spacer(1, 2.5 * inch))
-    flowables.append(Paragraph('SQL &amp; Database Design', styles['BookTitle']))
+    flowables.append(Paragraph('System Design', styles['BookTitle']))
     flowables.append(Paragraph('A Complete Guide', styles['BookSubtitle']))
     flowables.append(Spacer(1, 0.5 * inch))
     flowables.append(HorizontalRule(width_pct=40, color=ACCENT, thickness=2))
@@ -689,11 +685,10 @@ def build_cover_page(styles):
         fontName=BODY_FONT,
     )
     flowables.append(Paragraph(
-        'Master PostgreSQL from First Query to Production Database Design',
+        'Master Scalable Architecture &mdash; From Fundamentals to Designing Twitter, YouTube, and Uber',
         subtitle_style
     ))
-    flowables.append(Spacer(1, 0.3 * inch))
-    flowables.append(Spacer(1, 2 * inch))
+    flowables.append(Spacer(1, 2.5 * inch))
 
     edition_style = ParagraphStyle(
         'Edition',
@@ -717,39 +712,39 @@ def build_toc_page(styles):
     flowables.append(Spacer(1, 16))
 
     chapter_names = [
-        ('1', 'What Are Databases'),
-        ('2', 'The Relational Model'),
-        ('3', 'Installing PostgreSQL'),
-        ('4', 'Creating Databases and Tables'),
-        ('5', 'Data Types'),
-        ('6', 'Inserting Data'),
-        ('7', 'SELECT Queries'),
-        ('8', 'WHERE Filtering'),
-        ('9', 'Sorting and Limiting'),
-        ('10', 'Aggregate Functions'),
-        ('11', 'GROUP BY and HAVING'),
-        ('12', 'Introduction to Joins'),
-        ('13', 'Inner Join'),
-        ('14', 'Left and Right Join'),
-        ('15', 'Full, Cross, and Self Join'),
-        ('16', 'Subqueries'),
-        ('17', 'Set Operations'),
-        ('18', 'String and Date Functions'),
-        ('19', 'CASE Expressions'),
-        ('20', 'Views'),
-        ('21', 'Indexes'),
-        ('22', 'Normalization'),
-        ('23', 'ER Diagrams'),
-        ('24', 'Constraints and Keys'),
-        ('25', 'Transactions'),
-        ('26', 'Window Functions'),
-        ('27', 'CTEs and Recursive Queries'),
-        ('28', 'Stored Procedures'),
-        ('29', 'Triggers'),
-        ('30', 'Performance Tuning'),
-        ('31', 'Database Security'),
-        ('32', 'Project: E-Commerce Database'),
-        ('33', 'Project: Analytics'),
+        ('1', 'What Is System Design'),
+        ('2', 'Scaling Basics'),
+        ('3', 'Load Balancing'),
+        ('4', 'Caching'),
+        ('5', 'Content Delivery Networks (CDN)'),
+        ('6', 'Databases: SQL and NoSQL'),
+        ('7', 'Database Replication'),
+        ('8', 'Database Sharding'),
+        ('9', 'Message Queues'),
+        ('10', 'API Design'),
+        ('11', 'Rate Limiting'),
+        ('12', 'Consistent Hashing'),
+        ('13', 'CAP Theorem'),
+        ('14', 'Microservices'),
+        ('15', 'Monolith to Microservices'),
+        ('16', 'Event-Driven Architecture'),
+        ('17', 'Blob Storage'),
+        ('18', 'Search Systems'),
+        ('19', 'Notification System'),
+        ('20', 'Logging and Monitoring'),
+        ('21', 'Design: URL Shortener'),
+        ('22', 'Design: Paste Bin'),
+        ('23', 'Design: Twitter'),
+        ('24', 'Design: Instagram'),
+        ('25', 'Design: Chat System'),
+        ('26', 'Design: YouTube'),
+        ('27', 'Design: Uber'),
+        ('28', 'Design: Notification Service'),
+        ('29', 'Design: Rate Limiter'),
+        ('30', 'Design: Web Crawler'),
+        ('31', 'Estimation Math'),
+        ('32', 'Interview Framework'),
+        ('33', 'Common Patterns'),
         ('34', 'Glossary'),
     ]
 
@@ -774,8 +769,8 @@ def build_toc_page(styles):
 
 def main():
     output_path = os.path.join(
-        '/Users/e141057/Desktop/work/clade_play_area/books/sql-database/build',
-        'SQL_Database_Design.pdf'
+        '/Users/e141057/Desktop/work/clade_play_area/books/system-design/build',
+        'System_Design_Guide.pdf'
     )
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
@@ -788,9 +783,9 @@ def main():
         bottomMargin=0.85 * inch,
         leftMargin=1 * inch,
         rightMargin=1 * inch,
-        title='SQL & Database Design: A Complete Guide',
-        author='SQL & Database Design Book',
-        subject='SQL and Database Design',
+        title='System Design: A Complete Guide',
+        author='System Design Book',
+        subject='System Design',
     )
 
     story = []
