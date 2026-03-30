@@ -1,0 +1,16 @@
+title: "React for Beginners: A Friendly Guide"
+subtitle: "Learn React Step by Step - No Prior Experience Needed"
+author: "Generated with Claude"
+date: "2026"
+lang: en
+toc: true
+toc-depth: 3
+numbersections: true
+top-level-division: chapter
+geometry:
+  - margin=1in
+fontsize: 11pt
+linestretch: 1.5
+mainfont: "Arial Unicode MS"
+monofont: "Menlo"
+highlight-style: tango

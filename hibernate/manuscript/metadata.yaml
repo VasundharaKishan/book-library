@@ -1,0 +1,16 @@
+title: "Hibernate & JPA: A Complete Guide"
+subtitle: "From First Entity to Production Application — With Spring Boot 3, Hibernate 6, and Jakarta Persistence"
+author: "Generated with Claude"
+date: "2026"
+lang: en
+toc: true
+toc-depth: 3
+numbersections: true
+top-level-division: chapter
+geometry:
+  - margin=1in
+fontsize: 11pt
+linestretch: 1.4
+mainfont: "Arial Unicode MS"
+monofont: "Menlo"
+highlight-style: tango

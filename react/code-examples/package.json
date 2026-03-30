@@ -1,0 +1,33 @@
+{
+  "name": "react-19-book-examples",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Code examples for Modern React 19: The Complete Guide",
+  "scripts": {
+    "build:all": "pnpm -r build",
+    "typecheck:all": "pnpm -r typecheck",
+    "lint:all": "pnpm -r lint",
+    "dev:ch01": "pnpm --filter ch01-hello-react dev",
+    "dev:ch02": "pnpm --filter ch02-tooling dev",
+    "dev:ch03": "pnpm --filter ch03-jsx dev",
+    "dev:ch04": "pnpm --filter ch04-components dev",
+    "dev:ch05": "pnpm --filter ch05-use-state dev",
+    "dev:ch06": "pnpm --filter ch06-use-effect dev",
+    "dev:ch07": "pnpm --filter ch07-events-forms dev",
+    "dev:ch08": "pnpm --filter ch08-use-suspense dev",
+    "dev:ch09": "pnpm --filter ch09-use-reducer dev",
+    "dev:ch10": "pnpm --filter ch10-context dev",
+    "dev:ch11": "pnpm --filter ch11-refs dev",
+    "dev:ch12": "pnpm --filter ch12-actions dev",
+    "dev:ch13": "pnpm --filter ch13-transitions dev",
+    "dev:ch14": "pnpm --filter ch14-performance dev",
+    "dev:ch15": "pnpm --filter ch15-advanced-hooks dev",
+    "dev:ch16": "pnpm --filter ch16-patterns dev",
+    "dev:ch17": "pnpm --filter ch17-typescript dev",
+    "dev:ch18": "pnpm --filter ch18-tailwind dev",
+    "dev:ch19": "pnpm --filter ch19-routing dev",
+    "dev:ch20": "pnpm --filter ch20-data-fetching dev",
+    "dev:ch21": "pnpm --filter ch21-forms dev",
+    "dev:ch22": "pnpm --filter ch22-state-management dev"
+  }
+}
